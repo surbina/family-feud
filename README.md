@@ -1,3 +1,7 @@
+## Amplify hosting urls
+
+main: [https://main.d2e4w7b9o6yzx6.amplifyapp.com][https://main.d2e4w7b9o6yzx6.amplifyapp.com]
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

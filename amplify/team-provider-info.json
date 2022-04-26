@@ -1,0 +1,23 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-familyfeud-dev-220547-authRole",
+            "UnauthRoleArn": "arn:aws:iam::640198528845:role/amplify-familyfeud-dev-220547-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::640198528845:role/amplify-familyfeud-dev-220547-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-familyfeud-dev-220547-deployment",
+            "UnauthRoleName": "amplify-familyfeud-dev-220547-unauthRole",
+            "StackName": "amplify-familyfeud-dev-220547",
+            "StackId": "arn:aws:cloudformation:us-east-1:640198528845:stack/amplify-familyfeud-dev-220547/04416f90-c4fd-11ec-b3d5-1285d9cd23a9",
+            "AmplifyAppId": "d2e4w7b9o6yzx6"
+        },
+        "categories": {
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d2e4w7b9o6yzx6",
+                    "type": "cicd"
+                }
+            }
+        }
+    }
+}
