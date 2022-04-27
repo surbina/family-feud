@@ -5,5 +5,23 @@
       "type": "cicd",
       "lastPushTimeStamp": "2022-04-26T01:23:44.744Z"
     }
+  },
+  "api": {
+    "familyfeud": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 7
+            }
+          },
+          "additionalAuthenticationProviders": []
+        }
+      }
+    }
   }
 }

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "familyfeud",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/surbina/workspace/Personal/family-feud/amplify/backend/api/familyfeud/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 7
+    }
+  }
+}
