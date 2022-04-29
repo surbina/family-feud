@@ -9,7 +9,9 @@ import {
   UpdateGameStateMutation,
   GameState,
   OnUpdateGameStateSubscription,
+  GetGameStateQuery,
 } from 'src/API';
+import { getGameState as getGameStateQuery } from 'src/graphql/queries';
 import { updateGameState } from 'src/graphql/mutations';
 import { GAME_STATUS_ID } from 'src/constants';
 import { onUpdateGameState } from 'src/graphql/subscriptions';
@@ -94,8 +96,10 @@ export function getGameStateSubscription() {
 
 export const gameStateObserver = getGameStateSubscription();
 
-export const useGameStateSubscription = (): GameState => {
-  const [gameState, setGameState] = useState<GameState | undefined>(undefined);
+export const useGameStateSubscription = (
+  initialState: GameState
+): GameState => {
+  const [gameState, setGameState] = useState<GameState>(initialState);
 
   useEffect(() => {
     const subscription = gameStateObserver.subscribe({
@@ -112,3 +116,12 @@ export const useGameStateSubscription = (): GameState => {
 
   return gameState;
 };
+
+export function getGameState() {
+  return callGraphQL<GetGameStateQuery>({
+    query: getGameStateQuery,
+    variables: {
+      id: GAME_STATUS_ID,
+    },
+  });
+}

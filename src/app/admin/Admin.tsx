@@ -6,11 +6,16 @@ import {
   useSelectQuestionMutation,
 } from 'src/app/operations/gameState';
 import { TEST_QUESTION_ID } from 'src/constants';
+import { GameState } from 'src/API';
 
-export function Admin() {
+interface AdminProps {
+  initialGameState: GameState;
+}
+
+export function Admin({ initialGameState }: AdminProps) {
   const { makeRequest: resetGameState } = useResetGameStateMutation();
   const { makeRequest: selectQuestion } = useSelectQuestionMutation();
-  const gameState = useGameStateSubscription();
+  const gameState = useGameStateSubscription(initialGameState);
 
   const handleReset = () => {
     resetGameState();
