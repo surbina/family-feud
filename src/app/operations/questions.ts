@@ -3,7 +3,7 @@ import {
   createOption,
   createResponse,
 } from 'src/graphql/mutations';
-import { getQuestion, listQuestions } from 'src/graphql/queries';
+import { getQuestion, listQuestions, listOptions } from 'src/graphql/queries';
 
 import {
   CreateQuestionMutation,
@@ -11,6 +11,7 @@ import {
   CreateResponseMutation,
   GetQuestionQuery,
   ListQuestionsQuery,
+  ListOptionsQuery,
 } from 'src/API';
 
 import { callGraphQL, getMutationHook, getQueryHook } from 'src/gqlHelper';
@@ -102,10 +103,24 @@ export function fetchQuestion(id: string) {
 
 export const useQuestion = getQueryHook(fetchQuestion);
 
-export function fetchQuestions() {
+export function getAllQuestions() {
   return callGraphQL<ListQuestionsQuery>({
     query: listQuestions,
+    variables: {
+      limit: 100,
+    },
   });
 }
 
-export const useQuestions = getQueryHook(fetchQuestions);
+export const useQuestions = getQueryHook(getAllQuestions);
+
+// ================================
+
+export function getAllOptions() {
+  return callGraphQL<ListOptionsQuery>({
+    query: listOptions,
+    variables: {
+      limit: 100,
+    },
+  });
+}

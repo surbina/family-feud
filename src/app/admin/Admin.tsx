@@ -19,6 +19,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/es-mx';
 import { QuestionsTable } from './QuestionsTable';
 import { useTimer } from 'src/app/useTimer';
+import { deleteAllData } from 'src/app/operations/cleanUp';
 
 dayjs.locale('es-mx');
 
@@ -86,6 +87,16 @@ export function Admin({ initialGameState }: AdminProps) {
                 gameState.currentState !== GameStatus.COUNT_DOWN_STOPPED
               }>
               4. Reveal Answers
+            </Button>
+            <Button
+              onClick={deleteAllData}
+              colorScheme="red"
+              color="black"
+              border="4px"
+              borderColor="black"
+              width={200}
+              disabled={true}>
+              DELETE ALL DATA!
             </Button>
             <Text fontSize="8xl">
               {timeRemaining !== undefined ? timeRemaining : '-'}
