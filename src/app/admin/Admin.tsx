@@ -18,6 +18,7 @@ import { GameState, GameStatus } from 'src/API';
 import dayjs from 'dayjs';
 import 'dayjs/locale/es-mx';
 import { QuestionsTable } from './QuestionsTable';
+import { useTimer } from 'src/app/useTimer';
 
 dayjs.locale('es-mx');
 
@@ -28,16 +29,18 @@ interface AdminProps {
 export function Admin({ initialGameState }: AdminProps) {
   const gameState = useGameStateSubscription(initialGameState);
   const { makeRequest: resetGameState } = useResetGameStateMutation();
-  const { makeRequest: startTimer } = useStartTimerMutation();
+  const { makeRequest: startTimerRequest } = useStartTimerMutation();
   const { makeRequest: stopTimer } = useStopTimerMutation();
   const { makeRequest: revealAnswers } = useRevealAnswersMutation();
+  const { startTimer, timeRemaining } = useTimer();
 
-  const handleStartTimer = async () => {
-    await startTimer(dayjs().add(20, 'millisecond').toISOString());
+  const handleStartTimer = () => {
+    startTimer();
+    startTimerRequest(dayjs().add(22, 'second').toISOString());
 
     setTimeout(() => {
       stopTimer();
-    }, 20000);
+    }, 19500);
   };
 
   return (
@@ -84,6 +87,9 @@ export function Admin({ initialGameState }: AdminProps) {
               }>
               4. Reveal Answers
             </Button>
+            <Text fontSize="8xl">
+              {timeRemaining !== undefined ? timeRemaining : '-'}
+            </Text>
           </VStack>
         </GridItem>
         <GridItem>
