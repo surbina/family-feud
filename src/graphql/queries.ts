@@ -8,7 +8,7 @@ export const getGameState = /* GraphQL */ `
       id
       currentState
       currentQuestionId
-      timerStarted
+      targetTimerEnd
       createdAt
       updatedAt
     }
@@ -33,7 +33,7 @@ export const listGameStates = /* GraphQL */ `
         id
         currentState
         currentQuestionId
-        timerStarted
+        targetTimerEnd
         createdAt
         updatedAt
       }
@@ -45,10 +45,12 @@ export const getQuestion = /* GraphQL */ `
   query GetQuestion($id: ID!) {
     getQuestion(id: $id) {
       id
-      text
+      publicQuestion
+      personalQuestion
       options {
         items {
           id
+          order
           text
           createdAt
           updatedAt
@@ -78,7 +80,8 @@ export const listQuestions = /* GraphQL */ `
     ) {
       items {
         id
-        text
+        publicQuestion
+        personalQuestion
         options {
           nextToken
         }
@@ -93,10 +96,12 @@ export const getOption = /* GraphQL */ `
   query GetOption($id: ID!) {
     getOption(id: $id) {
       id
+      order
       text
       question {
         id
-        text
+        publicQuestion
+        personalQuestion
         options {
           nextToken
         }
@@ -126,10 +131,12 @@ export const listOptions = /* GraphQL */ `
     ) {
       items {
         id
+        order
         text
         question {
           id
-          text
+          publicQuestion
+          personalQuestion
           createdAt
           updatedAt
         }

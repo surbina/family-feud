@@ -2,14 +2,52 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateGameState = /* GraphQL */ `
+  subscription OnCreateGameState {
+    onCreateGameState {
+      id
+      currentState
+      currentQuestionId
+      targetTimerEnd
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateGameState = /* GraphQL */ `
+  subscription OnUpdateGameState {
+    onUpdateGameState {
+      id
+      currentState
+      currentQuestionId
+      targetTimerEnd
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteGameState = /* GraphQL */ `
+  subscription OnDeleteGameState {
+    onDeleteGameState {
+      id
+      currentState
+      currentQuestionId
+      targetTimerEnd
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreateQuestion = /* GraphQL */ `
   subscription OnCreateQuestion {
     onCreateQuestion {
       id
-      text
+      publicQuestion
+      personalQuestion
       options {
         items {
           id
+          order
           text
           createdAt
           updatedAt
@@ -26,10 +64,12 @@ export const onUpdateQuestion = /* GraphQL */ `
   subscription OnUpdateQuestion {
     onUpdateQuestion {
       id
-      text
+      publicQuestion
+      personalQuestion
       options {
         items {
           id
+          order
           text
           createdAt
           updatedAt
@@ -46,10 +86,12 @@ export const onDeleteQuestion = /* GraphQL */ `
   subscription OnDeleteQuestion {
     onDeleteQuestion {
       id
-      text
+      publicQuestion
+      personalQuestion
       options {
         items {
           id
+          order
           text
           createdAt
           updatedAt
@@ -66,10 +108,12 @@ export const onCreateOption = /* GraphQL */ `
   subscription OnCreateOption {
     onCreateOption {
       id
+      order
       text
       question {
         id
-        text
+        publicQuestion
+        personalQuestion
         options {
           nextToken
         }
@@ -86,10 +130,12 @@ export const onUpdateOption = /* GraphQL */ `
   subscription OnUpdateOption {
     onUpdateOption {
       id
+      order
       text
       question {
         id
-        text
+        publicQuestion
+        personalQuestion
         options {
           nextToken
         }
@@ -106,10 +152,12 @@ export const onDeleteOption = /* GraphQL */ `
   subscription OnDeleteOption {
     onDeleteOption {
       id
+      order
       text
       question {
         id
-        text
+        publicQuestion
+        personalQuestion
         options {
           nextToken
         }

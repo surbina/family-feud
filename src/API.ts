@@ -6,7 +6,7 @@ export type CreateGameStateInput = {
   id?: string | null,
   currentState: GameStatus,
   currentQuestionId?: string | null,
-  timerStarted?: string | null,
+  targetTimerEnd?: string | null,
 };
 
 export enum GameStatus {
@@ -21,7 +21,7 @@ export enum GameStatus {
 export type ModelGameStateConditionInput = {
   currentState?: ModelGameStatusInput | null,
   currentQuestionId?: ModelIDInput | null,
-  timerStarted?: ModelStringInput | null,
+  targetTimerEnd?: ModelStringInput | null,
   and?: Array< ModelGameStateConditionInput | null > | null,
   or?: Array< ModelGameStateConditionInput | null > | null,
   not?: ModelGameStateConditionInput | null,
@@ -93,7 +93,7 @@ export type GameState = {
   id: string,
   currentState: GameStatus,
   currentQuestionId?: string | null,
-  timerStarted?: string | null,
+  targetTimerEnd?: string | null,
   createdAt: string,
   updatedAt: string,
 };
@@ -102,7 +102,7 @@ export type UpdateGameStateInput = {
   id: string,
   currentState?: GameStatus | null,
   currentQuestionId?: string | null,
-  timerStarted?: string | null,
+  targetTimerEnd?: string | null,
 };
 
 export type DeleteGameStateInput = {
@@ -111,11 +111,13 @@ export type DeleteGameStateInput = {
 
 export type CreateQuestionInput = {
   id?: string | null,
-  text: string,
+  publicQuestion: string,
+  personalQuestion: string,
 };
 
 export type ModelQuestionConditionInput = {
-  text?: ModelStringInput | null,
+  publicQuestion?: ModelStringInput | null,
+  personalQuestion?: ModelStringInput | null,
   and?: Array< ModelQuestionConditionInput | null > | null,
   or?: Array< ModelQuestionConditionInput | null > | null,
   not?: ModelQuestionConditionInput | null,
@@ -124,7 +126,8 @@ export type ModelQuestionConditionInput = {
 export type Question = {
   __typename: "Question",
   id: string,
-  text: string,
+  publicQuestion: string,
+  personalQuestion: string,
   options?: ModelOptionConnection | null,
   createdAt: string,
   updatedAt: string,
@@ -139,6 +142,7 @@ export type ModelOptionConnection = {
 export type Option = {
   __typename: "Option",
   id: string,
+  order: number,
   text: string,
   question: Question,
   createdAt: string,
@@ -148,7 +152,8 @@ export type Option = {
 
 export type UpdateQuestionInput = {
   id: string,
-  text?: string | null,
+  publicQuestion?: string | null,
+  personalQuestion?: string | null,
 };
 
 export type DeleteQuestionInput = {
@@ -157,11 +162,13 @@ export type DeleteQuestionInput = {
 
 export type CreateOptionInput = {
   id?: string | null,
+  order: number,
   text: string,
   questionOptionsId: string,
 };
 
 export type ModelOptionConditionInput = {
+  order?: ModelIntInput | null,
   text?: ModelStringInput | null,
   and?: Array< ModelOptionConditionInput | null > | null,
   or?: Array< ModelOptionConditionInput | null > | null,
@@ -169,8 +176,21 @@ export type ModelOptionConditionInput = {
   questionOptionsId?: ModelIDInput | null,
 };
 
+export type ModelIntInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
 export type UpdateOptionInput = {
   id: string,
+  order?: number | null,
   text?: string | null,
   questionOptionsId?: string | null,
 };
@@ -256,7 +276,7 @@ export type ModelGameStateFilterInput = {
   id?: ModelIDInput | null,
   currentState?: ModelGameStatusInput | null,
   currentQuestionId?: ModelIDInput | null,
-  timerStarted?: ModelStringInput | null,
+  targetTimerEnd?: ModelStringInput | null,
   and?: Array< ModelGameStateFilterInput | null > | null,
   or?: Array< ModelGameStateFilterInput | null > | null,
   not?: ModelGameStateFilterInput | null,
@@ -276,7 +296,8 @@ export type ModelGameStateConnection = {
 
 export type ModelQuestionFilterInput = {
   id?: ModelIDInput | null,
-  text?: ModelStringInput | null,
+  publicQuestion?: ModelStringInput | null,
+  personalQuestion?: ModelStringInput | null,
   and?: Array< ModelQuestionFilterInput | null > | null,
   or?: Array< ModelQuestionFilterInput | null > | null,
   not?: ModelQuestionFilterInput | null,
@@ -290,6 +311,7 @@ export type ModelQuestionConnection = {
 
 export type ModelOptionFilterInput = {
   id?: ModelIDInput | null,
+  order?: ModelIntInput | null,
   text?: ModelStringInput | null,
   and?: Array< ModelOptionFilterInput | null > | null,
   or?: Array< ModelOptionFilterInput | null > | null,
@@ -347,7 +369,7 @@ export type CreateGameStateMutation = {
     id: string,
     currentState: GameStatus,
     currentQuestionId?: string | null,
-    timerStarted?: string | null,
+    targetTimerEnd?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -364,7 +386,7 @@ export type UpdateGameStateMutation = {
     id: string,
     currentState: GameStatus,
     currentQuestionId?: string | null,
-    timerStarted?: string | null,
+    targetTimerEnd?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -381,7 +403,7 @@ export type DeleteGameStateMutation = {
     id: string,
     currentState: GameStatus,
     currentQuestionId?: string | null,
-    timerStarted?: string | null,
+    targetTimerEnd?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -396,12 +418,14 @@ export type CreateQuestionMutation = {
   createQuestion?:  {
     __typename: "Question",
     id: string,
-    text: string,
+    publicQuestion: string,
+    personalQuestion: string,
     options?:  {
       __typename: "ModelOptionConnection",
       items:  Array< {
         __typename: "Option",
         id: string,
+        order: number,
         text: string,
         createdAt: string,
         updatedAt: string,
@@ -423,12 +447,14 @@ export type UpdateQuestionMutation = {
   updateQuestion?:  {
     __typename: "Question",
     id: string,
-    text: string,
+    publicQuestion: string,
+    personalQuestion: string,
     options?:  {
       __typename: "ModelOptionConnection",
       items:  Array< {
         __typename: "Option",
         id: string,
+        order: number,
         text: string,
         createdAt: string,
         updatedAt: string,
@@ -450,12 +476,14 @@ export type DeleteQuestionMutation = {
   deleteQuestion?:  {
     __typename: "Question",
     id: string,
-    text: string,
+    publicQuestion: string,
+    personalQuestion: string,
     options?:  {
       __typename: "ModelOptionConnection",
       items:  Array< {
         __typename: "Option",
         id: string,
+        order: number,
         text: string,
         createdAt: string,
         updatedAt: string,
@@ -477,11 +505,13 @@ export type CreateOptionMutation = {
   createOption?:  {
     __typename: "Option",
     id: string,
+    order: number,
     text: string,
     question:  {
       __typename: "Question",
       id: string,
-      text: string,
+      publicQuestion: string,
+      personalQuestion: string,
       options?:  {
         __typename: "ModelOptionConnection",
         nextToken?: string | null,
@@ -504,11 +534,13 @@ export type UpdateOptionMutation = {
   updateOption?:  {
     __typename: "Option",
     id: string,
+    order: number,
     text: string,
     question:  {
       __typename: "Question",
       id: string,
-      text: string,
+      publicQuestion: string,
+      personalQuestion: string,
       options?:  {
         __typename: "ModelOptionConnection",
         nextToken?: string | null,
@@ -531,11 +563,13 @@ export type DeleteOptionMutation = {
   deleteOption?:  {
     __typename: "Option",
     id: string,
+    order: number,
     text: string,
     question:  {
       __typename: "Question",
       id: string,
-      text: string,
+      publicQuestion: string,
+      personalQuestion: string,
       options?:  {
         __typename: "ModelOptionConnection",
         nextToken?: string | null,
@@ -694,7 +728,7 @@ export type GetGameStateQuery = {
     id: string,
     currentState: GameStatus,
     currentQuestionId?: string | null,
-    timerStarted?: string | null,
+    targetTimerEnd?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -716,7 +750,7 @@ export type ListGameStatesQuery = {
       id: string,
       currentState: GameStatus,
       currentQuestionId?: string | null,
-      timerStarted?: string | null,
+      targetTimerEnd?: string | null,
       createdAt: string,
       updatedAt: string,
     } | null >,
@@ -732,12 +766,14 @@ export type GetQuestionQuery = {
   getQuestion?:  {
     __typename: "Question",
     id: string,
-    text: string,
+    publicQuestion: string,
+    personalQuestion: string,
     options?:  {
       __typename: "ModelOptionConnection",
       items:  Array< {
         __typename: "Option",
         id: string,
+        order: number,
         text: string,
         createdAt: string,
         updatedAt: string,
@@ -764,7 +800,8 @@ export type ListQuestionsQuery = {
     items:  Array< {
       __typename: "Question",
       id: string,
-      text: string,
+      publicQuestion: string,
+      personalQuestion: string,
       options?:  {
         __typename: "ModelOptionConnection",
         nextToken?: string | null,
@@ -784,11 +821,13 @@ export type GetOptionQuery = {
   getOption?:  {
     __typename: "Option",
     id: string,
+    order: number,
     text: string,
     question:  {
       __typename: "Question",
       id: string,
-      text: string,
+      publicQuestion: string,
+      personalQuestion: string,
       options?:  {
         __typename: "ModelOptionConnection",
         nextToken?: string | null,
@@ -816,11 +855,13 @@ export type ListOptionsQuery = {
     items:  Array< {
       __typename: "Option",
       id: string,
+      order: number,
       text: string,
       question:  {
         __typename: "Question",
         id: string,
-        text: string,
+        publicQuestion: string,
+        personalQuestion: string,
         createdAt: string,
         updatedAt: string,
       },
@@ -952,16 +993,54 @@ export type QuestionResponsesQuery = {
   } | null,
 };
 
+export type OnCreateGameStateSubscription = {
+  onCreateGameState?:  {
+    __typename: "GameState",
+    id: string,
+    currentState: GameStatus,
+    currentQuestionId?: string | null,
+    targetTimerEnd?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateGameStateSubscription = {
+  onUpdateGameState?:  {
+    __typename: "GameState",
+    id: string,
+    currentState: GameStatus,
+    currentQuestionId?: string | null,
+    targetTimerEnd?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteGameStateSubscription = {
+  onDeleteGameState?:  {
+    __typename: "GameState",
+    id: string,
+    currentState: GameStatus,
+    currentQuestionId?: string | null,
+    targetTimerEnd?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
 export type OnCreateQuestionSubscription = {
   onCreateQuestion?:  {
     __typename: "Question",
     id: string,
-    text: string,
+    publicQuestion: string,
+    personalQuestion: string,
     options?:  {
       __typename: "ModelOptionConnection",
       items:  Array< {
         __typename: "Option",
         id: string,
+        order: number,
         text: string,
         createdAt: string,
         updatedAt: string,
@@ -978,12 +1057,14 @@ export type OnUpdateQuestionSubscription = {
   onUpdateQuestion?:  {
     __typename: "Question",
     id: string,
-    text: string,
+    publicQuestion: string,
+    personalQuestion: string,
     options?:  {
       __typename: "ModelOptionConnection",
       items:  Array< {
         __typename: "Option",
         id: string,
+        order: number,
         text: string,
         createdAt: string,
         updatedAt: string,
@@ -1000,12 +1081,14 @@ export type OnDeleteQuestionSubscription = {
   onDeleteQuestion?:  {
     __typename: "Question",
     id: string,
-    text: string,
+    publicQuestion: string,
+    personalQuestion: string,
     options?:  {
       __typename: "ModelOptionConnection",
       items:  Array< {
         __typename: "Option",
         id: string,
+        order: number,
         text: string,
         createdAt: string,
         updatedAt: string,
@@ -1022,11 +1105,13 @@ export type OnCreateOptionSubscription = {
   onCreateOption?:  {
     __typename: "Option",
     id: string,
+    order: number,
     text: string,
     question:  {
       __typename: "Question",
       id: string,
-      text: string,
+      publicQuestion: string,
+      personalQuestion: string,
       options?:  {
         __typename: "ModelOptionConnection",
         nextToken?: string | null,
@@ -1044,11 +1129,13 @@ export type OnUpdateOptionSubscription = {
   onUpdateOption?:  {
     __typename: "Option",
     id: string,
+    order: number,
     text: string,
     question:  {
       __typename: "Question",
       id: string,
-      text: string,
+      publicQuestion: string,
+      personalQuestion: string,
       options?:  {
         __typename: "ModelOptionConnection",
         nextToken?: string | null,
@@ -1066,11 +1153,13 @@ export type OnDeleteOptionSubscription = {
   onDeleteOption?:  {
     __typename: "Option",
     id: string,
+    order: number,
     text: string,
     question:  {
       __typename: "Question",
       id: string,
-      text: string,
+      publicQuestion: string,
+      personalQuestion: string,
       options?:  {
         __typename: "ModelOptionConnection",
         nextToken?: string | null,

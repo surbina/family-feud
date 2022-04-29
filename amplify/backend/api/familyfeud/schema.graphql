@@ -3,11 +3,11 @@
 input AMPLIFY {
   globalAuthRule: AuthRule = { allow: public }
 } # FOR TESTING ONLY!
-type GameState @model(subscriptions: { level: public }) {
+type GameState @model {
   id: ID! @primaryKey
   currentState: GameStatus!
   currentQuestionId: ID
-  timerStarted: String
+  targetTimerEnd: String
 }
 
 enum GameStatus {
@@ -20,12 +20,14 @@ enum GameStatus {
 
 type Question @model {
   id: ID! @primaryKey
-  text: String!
+  publicQuestion: String!
+  personalQuestion: String!
   options: [Option!]! @hasMany
 }
 
 type Option @model {
   id: ID! @primaryKey
+  order: Int!
   text: String!
   question: Question! @belongsTo
 }

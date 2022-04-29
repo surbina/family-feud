@@ -11,7 +11,7 @@ export const createGameState = /* GraphQL */ `
       id
       currentState
       currentQuestionId
-      timerStarted
+      targetTimerEnd
       createdAt
       updatedAt
     }
@@ -26,7 +26,7 @@ export const updateGameState = /* GraphQL */ `
       id
       currentState
       currentQuestionId
-      timerStarted
+      targetTimerEnd
       createdAt
       updatedAt
     }
@@ -41,7 +41,7 @@ export const deleteGameState = /* GraphQL */ `
       id
       currentState
       currentQuestionId
-      timerStarted
+      targetTimerEnd
       createdAt
       updatedAt
     }
@@ -54,10 +54,12 @@ export const createQuestion = /* GraphQL */ `
   ) {
     createQuestion(input: $input, condition: $condition) {
       id
-      text
+      publicQuestion
+      personalQuestion
       options {
         items {
           id
+          order
           text
           createdAt
           updatedAt
@@ -77,10 +79,12 @@ export const updateQuestion = /* GraphQL */ `
   ) {
     updateQuestion(input: $input, condition: $condition) {
       id
-      text
+      publicQuestion
+      personalQuestion
       options {
         items {
           id
+          order
           text
           createdAt
           updatedAt
@@ -100,10 +104,12 @@ export const deleteQuestion = /* GraphQL */ `
   ) {
     deleteQuestion(input: $input, condition: $condition) {
       id
-      text
+      publicQuestion
+      personalQuestion
       options {
         items {
           id
+          order
           text
           createdAt
           updatedAt
@@ -123,10 +129,12 @@ export const createOption = /* GraphQL */ `
   ) {
     createOption(input: $input, condition: $condition) {
       id
+      order
       text
       question {
         id
-        text
+        publicQuestion
+        personalQuestion
         options {
           nextToken
         }
@@ -146,10 +154,12 @@ export const updateOption = /* GraphQL */ `
   ) {
     updateOption(input: $input, condition: $condition) {
       id
+      order
       text
       question {
         id
-        text
+        publicQuestion
+        personalQuestion
         options {
           nextToken
         }
@@ -169,10 +179,12 @@ export const deleteOption = /* GraphQL */ `
   ) {
     deleteOption(input: $input, condition: $condition) {
       id
+      order
       text
       question {
         id
-        text
+        publicQuestion
+        personalQuestion
         options {
           nextToken
         }
