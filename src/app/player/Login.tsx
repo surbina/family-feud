@@ -28,12 +28,11 @@ export function Login() {
   };
 
   return (
-    <Flex className="test1" width="100%" padding="12" flexDirection="column">
+    <Flex width="100%" padding="12" flexDirection="column">
       <Heading as="h1">100 Cristianos Dicen</Heading>
 
       <form onSubmit={handleSubmit} style={{ paddingTop: 32 }}>
         <Flex
-          className="test2"
           backgroundColor="orange"
           color="black"
           flexDirection="column"
