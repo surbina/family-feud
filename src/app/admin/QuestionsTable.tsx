@@ -41,7 +41,7 @@ export function QuestionsTable({
   }
 
   return (
-    <TableContainer backgroundColor="white" color="GrayText" width="xl">
+    <TableContainer backgroundColor="white" color="GrayText" width="2xl">
       <Table>
         <Thead>
           <Tr>

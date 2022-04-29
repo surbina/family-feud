@@ -16,7 +16,7 @@ import {
 
 import { callGraphQL, getMutationHook, getQueryHook } from 'src/gqlHelper';
 
-interface Question {
+export interface Question {
   publicQuestion: string;
   personalQuestion: string;
   options: Array<string>;

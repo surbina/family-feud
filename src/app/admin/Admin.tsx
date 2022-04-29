@@ -20,6 +20,8 @@ import 'dayjs/locale/es-mx';
 import { QuestionsTable } from './QuestionsTable';
 import { useTimer } from 'src/app/useTimer';
 import { deleteAllData } from 'src/app/operations/cleanUp';
+import { createMultipleQuestions } from 'src/app/operations/questions';
+import { questions } from 'src/app/questions';
 
 dayjs.locale('es-mx');
 
@@ -42,6 +44,10 @@ export function Admin({ initialGameState }: AdminProps) {
     setTimeout(() => {
       stopTimer();
     }, 19500);
+  };
+
+  const handleCreateQuestions = () => {
+    createMultipleQuestions(questions);
   };
 
   return (
@@ -87,6 +93,16 @@ export function Admin({ initialGameState }: AdminProps) {
                 gameState.currentState !== GameStatus.COUNT_DOWN_STOPPED
               }>
               4. Reveal Answers
+            </Button>
+            <Button
+              onClick={handleCreateQuestions}
+              colorScheme="green"
+              color="black"
+              border="4px"
+              borderColor="black"
+              width={200}
+              disabled={true}>
+              Upload data
             </Button>
             <Button
               onClick={deleteAllData}
