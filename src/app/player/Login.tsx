@@ -29,7 +29,9 @@ export function Login() {
 
   return (
     <Flex width="100%" padding="12" flexDirection="column">
-      <Heading as="h1">100 Cristianos Dicen</Heading>
+      <Heading as="h1" textAlign="center">
+        100 Cristianos Dicen
+      </Heading>
 
       <form onSubmit={handleSubmit} style={{ paddingTop: 32 }}>
         <Flex

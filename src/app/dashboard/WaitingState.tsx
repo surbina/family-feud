@@ -1,5 +1,6 @@
 import { Heading } from '@chakra-ui/react';
-import QRCode from 'react-qr-code';
+import Image from 'next/image';
+import qrPic from '../../../public/qr.png';
 
 export function WaitingState() {
   return (
@@ -12,7 +13,7 @@ export function WaitingState() {
         fontSize={64}>
         Ya viene la próxima pregunta!
       </Heading>
-      <QRCode value="https://www.100cristianosdicen.com" size={400} />
+      <Image src={qrPic} alt="https://www.100cristianosdicen.com" />
     </>
   );
 }

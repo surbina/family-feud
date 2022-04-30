@@ -29,7 +29,9 @@ export function QuestionForm({ initialGameState }: QuestionFormProps) {
 
   return (
     <Flex width="100%" padding="12" flexDirection="column">
-      <Heading as="h1">100 Cristianos Dicen</Heading>
+      <Heading as="h1" textAlign="center">
+        100 Cristianos Dicen
+      </Heading>
       {gameState.currentState === GameStatus.COUNT_DOWN_INITIATED &&
         question && <Form question={question.getQuestion} />}
       {gameState.currentState !== GameStatus.COUNT_DOWN_INITIATED && (

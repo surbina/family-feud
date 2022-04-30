@@ -1,5 +1,13 @@
 import { GetQuestionQuery } from 'src/API';
-import { Heading, Flex, ListItem, OrderedList, Text } from '@chakra-ui/react';
+import {
+  Heading,
+  Flex,
+  ListItem,
+  OrderedList,
+  Text,
+  Grid,
+  GridItem,
+} from '@chakra-ui/react';
 
 interface QuestionViewerProps {
   question: GetQuestionQuery['getQuestion'];
@@ -14,31 +22,41 @@ export function QuestionViewer({
   revealResults,
   questionResults,
 }: QuestionViewerProps) {
+  const questions = [...question.options.items].sort(
+    ({ order: a }, { order: b }) => a - b
+  );
+
   return (
     <Flex flexDirection="column" marginTop={8}>
-      <Text
-        fontSize="5xl"
-        alignSelf="center"
-        color={
-          timeRemaining <= 5
-            ? 'red.700'
-            : timeRemaining <= 10
-            ? 'orange'
-            : 'black'
-        }>
-        Tiempo restante: {timeRemaining !== undefined ? timeRemaining : '-'}
-      </Text>
-      <Heading as="h2" color="blackAlpha.700" fontSize={72}>
+      {timeRemaining > 0 && (
+        <Text
+          fontSize="4xl"
+          alignSelf="center"
+          color={
+            timeRemaining <= 5
+              ? 'red.700'
+              : timeRemaining <= 10
+              ? 'orange'
+              : 'black'
+          }>
+          Tiempo restante: {timeRemaining}
+        </Text>
+      )}
+      <Heading as="h2" color="blackAlpha.700" fontSize={64} textAlign="center">
         {question.publicQuestion}
       </Heading>
-      <OrderedList spacing={3} fontSize={46} alignSelf="center" marginTop={8}>
-        {question.options.items.map(({ id, text }) => (
-          <ListItem key={id}>
-            {text}
-            {revealResults && `: ${questionResults[id]}`}
-          </ListItem>
+      <Grid
+        gridTemplateColumns="auto auto"
+        justifyContent="center"
+        rowGap={6}
+        columnGap={10}>
+        {questions.map(({ id, text }, index) => (
+          <Text key={id} fontSize={38}>
+            {`${index + 1}. ${text}`}
+            {revealResults && `: ${questionResults[id] || 0}`}
+          </Text>
         ))}
-      </OrderedList>
+      </Grid>
     </Flex>
   );
 }

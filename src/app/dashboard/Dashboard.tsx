@@ -56,11 +56,15 @@ export function Dashboard({ initialGameState }: DashboardProps) {
 
   const questionResults = getQuestionResults(questionResponses?.listResponses);
 
-  console.log({ questionResults });
-
   return (
-    <Flex flexDirection="column" width="100%" alignItems="center" padding="12">
-      <Text color="blackAlpha.700" fontSize={24}>
+    <Flex
+      flexDirection="column"
+      width="100%"
+      alignItems="center"
+      padding="12"
+      paddingTop={20}
+      paddingBottom={20}>
+      <Text color="blackAlpha.700" fontSize={18}>
         https://100cristianosdicen.com
       </Text>
       <Heading as="h1" marginTop={8}>
