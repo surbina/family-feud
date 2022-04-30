@@ -9,6 +9,7 @@ import {
   Button,
   TableContainer,
   Spinner,
+  Text,
 } from '@chakra-ui/react';
 import { REQUEST_STATUS } from 'src/gqlHelper';
 import { useSelectQuestionMutation } from 'src/app/operations/gameState';
@@ -41,29 +42,44 @@ export function QuestionsTable({
   }
 
   return (
-    <TableContainer backgroundColor="white" color="GrayText">
-      <Table>
+    <TableContainer
+      backgroundColor="white"
+      color="GrayText"
+      whiteSpace="initial"
+      overflowY="auto">
+      <Table size="sm">
         <Thead>
           <Tr>
-            <Th>Pregunta</Th>
             <Th>Acción</Th>
+            <Th>Pregunta</Th>
           </Tr>
         </Thead>
         <Tbody>
-          {questions.listQuestions.items.map((q) => (
-            <Tr key={q.id}>
-              <Td>{q.publicQuestion}</Td>
+          {questions.listQuestions.items.map((q, index) => (
+            <Tr
+              key={q.id}
+              backgroundColor={
+                localStorage.getItem(q.id) === 'true' ? 'pink' : 'white'
+              }>
               <Td>
                 <Button
-                  onClick={() => selectQuestion(q.id)}
+                  onClick={() => {
+                    selectQuestion(q.id);
+                    localStorage.setItem(q.id, 'true');
+                  }}
                   colorScheme="blue"
                   disabled={
                     ![GameStatus.INITIAL, GameStatus.ANSWERS_REVEALED].includes(
                       currentState
-                    )
+                    ) || localStorage.getItem(q.id) === 'true'
                   }>
-                  2. Elegir pregunta
+                  Seleccionar
                 </Button>
+              </Td>
+              <Td>
+                <Text fontSize={16}>
+                  {index + 1}. {q.publicQuestion}
+                </Text>
               </Td>
             </Tr>
           ))}

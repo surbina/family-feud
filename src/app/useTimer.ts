@@ -6,7 +6,7 @@ export function useTimer() {
   const [status, setStatus] = useState<'idle' | 'running'>('idle');
 
   const startTimer = useCallback(
-    (time: number = 22) => {
+    (time: number = 32) => {
       if (status === 'running') {
         return;
       }

@@ -39,11 +39,11 @@ export function Admin({ initialGameState }: AdminProps) {
 
   const handleStartTimer = () => {
     startTimer();
-    startTimerRequest(dayjs().add(22, 'second').toISOString());
+    startTimerRequest(dayjs().add(31, 'second').toISOString());
 
     setTimeout(() => {
       stopTimer();
-    }, 19500);
+    }, 29500);
   };
 
   const handleCreateQuestions = () => {

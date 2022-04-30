@@ -50,7 +50,7 @@ export function Dashboard({ initialGameState }: DashboardProps) {
 
   useEffect(() => {
     if (gameState.currentState === GameStatus.COUNT_DOWN_INITIATED) {
-      startTimer(21);
+      startTimer(31);
     }
   }, [gameState.currentState]); // eslint-disable-line react-hooks/exhaustive-deps
 
