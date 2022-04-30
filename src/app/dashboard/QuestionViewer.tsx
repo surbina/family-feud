@@ -3,7 +3,7 @@ import { Heading, Flex, ListItem, OrderedList, Text } from '@chakra-ui/react';
 
 interface QuestionViewerProps {
   question: GetQuestionQuery['getQuestion'];
-  questionResults?: Record<string, number>;
+  questionResults: Record<string, number>;
   revealResults: boolean;
   timeRemaining?: number;
 }
@@ -11,6 +11,8 @@ interface QuestionViewerProps {
 export function QuestionViewer({
   question,
   timeRemaining,
+  revealResults,
+  questionResults,
 }: QuestionViewerProps) {
   return (
     <Flex flexDirection="column" marginTop={8}>
@@ -31,7 +33,10 @@ export function QuestionViewer({
       </Heading>
       <OrderedList spacing={3} fontSize={46} alignSelf="center" marginTop={8}>
         {question.options.items.map(({ id, text }) => (
-          <ListItem key={id}>{text}</ListItem>
+          <ListItem key={id}>
+            {text}
+            {revealResults && `: ${questionResults[id]}`}
+          </ListItem>
         ))}
       </OrderedList>
     </Flex>

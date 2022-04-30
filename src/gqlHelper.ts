@@ -30,6 +30,7 @@ export function getQueryHook<T, O>(
 
     const makeRequest = useCallback(async () => {
       setState(REQUEST_STATUS.FETCHING);
+      setData(undefined);
 
       try {
         const result = await operation(options);

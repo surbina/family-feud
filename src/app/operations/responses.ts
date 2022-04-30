@@ -17,7 +17,9 @@ export function getQuestionResponses(questionId: string) {
     variables: {
       limit: 300,
       filter: {
-        questionId,
+        questionId: {
+          eq: questionId,
+        },
       },
     },
   });
