@@ -1,4 +1,4 @@
-import { callGraphQL } from 'src/gqlHelper';
+import { callGraphQL, getQueryHook } from 'src/gqlHelper';
 import { listResponses } from 'src/graphql/queries';
 import { ListResponsesQuery } from 'src/API';
 
@@ -10,3 +10,17 @@ export function getAllResponses() {
     },
   });
 }
+
+export function getQuestionResponses(questionId: string) {
+  return callGraphQL<ListResponsesQuery>({
+    query: listResponses,
+    variables: {
+      limit: 300,
+      filter: {
+        questionId,
+      },
+    },
+  });
+}
+
+export const useQuestionResponses = getQueryHook(getQuestionResponses);

@@ -45,7 +45,11 @@ export function Form({ question }: FormProps) {
           marginBottom={4}>
           <Stack direction="column">
             {question.options.items.map(({ id, text }) => (
-              <Radio key={id} value={id} isDisabled={questionAnswered}>
+              <Radio
+                key={id}
+                value={id}
+                isDisabled={questionAnswered}
+                size="lg">
                 {text}
               </Radio>
             ))}
