@@ -65,7 +65,7 @@ export function getMutationHook<T, O>(
     const [state, setState] = useState<REQUEST_STATUS>(REQUEST_STATUS.INITIAL);
     const [data, setData] = useState<T | undefined>(undefined);
 
-    const makeRequest = async (options?: O) => {
+    const makeRequest = useCallback(async (options?: O) => {
       try {
         setState(REQUEST_STATUS.FETCHING);
         const result = await operation(options);
@@ -77,7 +77,7 @@ export function getMutationHook<T, O>(
         console.log('Error: ', e);
         setState(REQUEST_STATUS.ERROR);
       }
-    };
+    }, []);
 
     return {
       state,

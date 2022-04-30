@@ -1,5 +1,21 @@
-import { Login } from 'src/app/player/Login';
+import { GameState } from 'src/API';
+import { getGameState } from 'src/app/operations/gameState';
+import { QuestionForm } from 'src/app/player/QuestionForm';
 
-export default function Home() {
-  return <Login />;
+interface LoginProps {
+  initialGameState: GameState;
+}
+
+export default function Login({ initialGameState }: LoginProps) {
+  return <QuestionForm initialGameState={initialGameState} />;
+}
+
+export async function getServerSideProps(): Promise<{ props: LoginProps }> {
+  const response = await getGameState();
+
+  return {
+    props: {
+      initialGameState: response.data.getGameState,
+    },
+  };
 }
