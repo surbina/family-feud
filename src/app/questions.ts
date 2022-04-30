@@ -14,11 +14,11 @@ export const questions: Array<Question> = [
       '15 a 25 años',
       '25 a 35 años',
       '35 a 50 años',
-      'Más de 50',
+      'Más de 50 años',
     ],
   },
   {
-    publicQuestion: '¿En qué iglesia te congregas?',
+    publicQuestion: '¿Asistis a alguna de las siguientes iglesias?',
     personalQuestion: '¿En qué iglesia te congregas?',
     options: [
       'Ice Monte',
@@ -27,7 +27,7 @@ export const questions: Array<Question> = [
       'Ice Barrio Mitre',
       'Ice Mariló',
       'Ice Florida',
-      'Otra ice',
+      'Otra ice/no asisto a ninguna',
     ],
   },
   {
@@ -37,15 +37,14 @@ export const questions: Array<Question> = [
       'Si, soy hincha de un club de fútbol',
       'Solo los mundiales',
       'No me interesa',
-      'Aguante la academia',
     ],
   },
   {
     publicQuestion: '¿Tenés mascotas?',
     personalQuestion: '¿Tenés mascotas?',
     options: [
-      'Sí, tengo un perro/s',
-      'Sí, tengo un gato/s',
+      'Sí, tengo una o más mascotas',
+      'Sí, tengo 3 o más máscotas',
       'No tengo mascotas',
     ],
   },
@@ -60,61 +59,58 @@ export const questions: Array<Question> = [
     options: ['Sí, entre 1 ó 2', 'Sí, 3 ó más', 'No tengo hermanos'],
   },
   {
-    publicQuestion: '¿Cuál es tu ocupación principal fuera de la iglesia?',
+    publicQuestion: '¿Cuál es tu ocupación principal?',
     personalQuestion: '¿Cuál es tu ocupación principal fuera de la iglesia?',
     options: [
       'Estudio en la escuela',
-      'Inicié mi formación terciaria',
+      'Estudio en el nivel terciario',
       'Trabajo',
     ],
   },
   {
-    publicQuestion: '¿Qué red social preferís?',
+    publicQuestion: '¿Qué red social usas con más frecuencia?',
     personalQuestion: '¿Qué red social preferís?',
     options: ['Tik Tok', 'Instagram', 'YouTube', 'Facebook'],
   },
   {
     publicQuestion: '¿Cómo preferis el mate?',
     personalQuestion: '¿Cómo preferis el mate?',
-    options: ['Dulce', 'Amargo'],
+    options: ['Dulce', 'Amargo', 'Con yuyos'],
   },
   {
-    publicQuestion: '¿Qué destino preferís?',
+    publicQuestion:
+      '¿Cuál de los siguientes destinos preferís para vacacionar?',
     personalQuestion: '¿Qué destino preferís?',
-    options: ['Purmamarca', 'Bariloche', 'Mar del Plata', 'Cataratas'],
+    options: [
+      'Purmamarca',
+      'Bariloche',
+      'Mar del Plata',
+      'Cataratas del Iguazú',
+    ],
   },
   {
-    publicQuestion: '¿Qué comida prefieres?',
+    publicQuestion: '¿Qué comida preferís?',
     personalQuestion: '¿Qué comida prefieres?',
     options: ['Desayuno', 'Almuerzo', 'Merienda', 'Cena'],
   },
   {
     publicQuestion:
-      '¿Tus familiares/amigos se congregan en alguna iglesia evangélica?',
+      '¿Tus familiares/amigos asisten a alguna iglesia cristiana evangélica?',
     personalQuestion:
       '¿Tus familiares/amigos se congregan en alguna iglesia evangélica?',
     options: [
-      'La mayoría se congrega',
-      'La mayoría no se congrega',
+      'La mayoría asiste a una',
+      'La mayoría no asiste a ninguna',
       'Mitad y mitad',
     ],
   },
   {
-    publicQuestion: '¿Estás sirviendo en algún ministerio?',
+    publicQuestion: '¿Colaboras con algún ministerio de tu iglesia?',
     personalQuestion: '¿Estás sirviendo en algún ministerio?',
     options: [
-      'Si, estoy sirviendo',
+      'Colaboro semanalmente en un ministerio',
       'Colaboro ocasionalmente en algunas actividades',
-      'No estoy sirviendo todavía',
-    ],
-  },
-  {
-    publicQuestion: '¿Estás en pareja?',
-    personalQuestion: '¿Estás en pareja?',
-    options: [
-      'No, estoy soltero',
-      'Sí, estoy casado/de novio',
-      'No estoy sirviendo todavía',
+      'No estoy colaborando todavía',
     ],
   },
 ];
